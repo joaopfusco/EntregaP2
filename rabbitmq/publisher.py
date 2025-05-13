@@ -24,5 +24,3 @@ class Publisher:
         )
         print("Mensagem enviada!")
 
-# publisher = Publisher()
-# publisher.send_message("ola mundo!")
