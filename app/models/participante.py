@@ -3,7 +3,7 @@ from sqlalchemy.orm import relationship
 from app.models.entity import Entity
 
 class Participante(Entity):
-    ultima_notificao = Column(String, index=True, nullable=False)
+    ultima_notificao = Column(String, index=True, nullable=True)
 
     usuario_id = Column(Integer, ForeignKey('usuario.id'), nullable=False)
     usuario = relationship("Usuario", backref="participantes")

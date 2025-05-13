@@ -4,11 +4,14 @@ def publish(postagem_id):
     connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
     channel = connection.channel()
 
-    channel.queue_declare(queue='minha_fila')
+    exchange_name = 'meu_exchange_fanout'
+    channel.exchange_declare(exchange=exchange_name, exchange_type='fanout')
 
-    channel.basic_publish(exchange='',
-                        routing_key='minha_fila',
-                        body=str(postagem_id))
+    channel.basic_publish(
+        exchange=exchange_name,
+        routing_key='',
+        body=str(postagem_id)
+    )
 
     print(" [x] Mensagem enviada!")
 

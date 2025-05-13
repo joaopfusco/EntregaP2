@@ -8,6 +8,7 @@ class UsuarioIn(BaseModel):
     nome: str
     email: str
     curso: str
+    telefone: str
 
 class UsuarioOut(EntitySchema, UsuarioIn):
     postagens: List[PostagemOut] = []
