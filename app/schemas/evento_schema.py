@@ -3,7 +3,6 @@ from pydantic import BaseModel
 from app.schemas.entity_schema import EntitySchema
 from typing import List
 from app.schemas.participante_schema import ParticipanteOut
-from app.schemas.postagem_schema import PostagemOut
 
 class EventoIn(BaseModel):
     nome: str
@@ -14,4 +13,4 @@ class EventoIn(BaseModel):
     aberto: bool
 
 class EventoOut(EntitySchema, EventoIn):
-    pass
+    participantes: List[ParticipanteOut] = []

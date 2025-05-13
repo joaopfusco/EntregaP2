@@ -1,7 +1,6 @@
 from fastapi import FastAPI
 from contextlib import asynccontextmanager
 from app.db.database import create_tables
-from app.routers.subscriber_router import subscriber_router
 from app.routers.usuario_router import usuario_router
 from app.routers.seguidor_router import seguidor_router
 from app.routers.evento_router import evento_router
@@ -24,4 +23,3 @@ app.include_router(seguidor_router)
 app.include_router(evento_router)
 app.include_router(postagem_router)
 app.include_router(participante_router)
-app.include_router(subscriber_router)

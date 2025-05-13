@@ -1,6 +1,8 @@
 from datetime import datetime
 from pydantic import BaseModel
 from app.schemas.entity_schema import EntitySchema
+from app.schemas.evento_schema import EventoOut
+from app.schemas.usuario_schema import UsuarioOut
 
 class PostagemIn(BaseModel):
     autor_id: int
@@ -11,4 +13,5 @@ class PostagemIn(BaseModel):
     comentarios: int
 
 class PostagemOut(EntitySchema, PostagemIn):
-    pass
+    evento: EventoOut = None
+    autor: UsuarioOut = None

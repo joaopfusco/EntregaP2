@@ -1,18 +1,28 @@
 import pika
 
-def publish(postagem_id):
-    connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
-    channel = connection.channel()
+class Publisher:
+    def __init__(self):
+        self.__host = "localhost"
+        self.__exchange = "meu_exchange_fanout"
+        self.__routing_key = ""
+        self.__channel = self.__create_channel()
+    
+    def __create_channel(self):
+        connection = pika.BlockingConnection(pika.ConnectionParameters(self.__host))
+        channel = connection.channel()
+        channel.exchange_declare(exchange=self.__exchange, exchange_type='fanout')
+        return channel
 
-    exchange_name = 'meu_exchange_fanout'
-    channel.exchange_declare(exchange=exchange_name, exchange_type='fanout')
+    def send_message(self, body):
+        self.__channel.basic_publish(
+            exchange=self.__exchange,
+            routing_key=self.__routing_key,
+            body=str(body),
+            properties=pika.BasicProperties(
+                delivery_mode=2
+            )
+        )
+        print("Mensagem enviada!")
 
-    channel.basic_publish(
-        exchange=exchange_name,
-        routing_key='',
-        body=str(postagem_id)
-    )
-
-    print(" [x] Mensagem enviada!")
-
-    connection.close()
+# publisher = Publisher()
+# publisher.send_message("ola mundo!")

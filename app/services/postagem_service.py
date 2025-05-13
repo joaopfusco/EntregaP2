@@ -1,6 +1,6 @@
 from app.models.postagem import Postagem
 from app.services.base_service import BaseService
-from rabbitmq.publisher import publish
+from rabbitmq.publisher import Publisher
 
 class PostagemService(BaseService):
     def __init__(self):
@@ -8,5 +8,6 @@ class PostagemService(BaseService):
 
     def create(self, data, session):
         result = super().create(data, session)
-        publish(result.id)
+        publisher = Publisher()
+        publisher.send_message(result.id)
         return result

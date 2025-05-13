@@ -17,4 +17,3 @@ postagem_router = PostagemRouter(
     prefix="/postagens",
     tags=["Postagens"],
 )
-
