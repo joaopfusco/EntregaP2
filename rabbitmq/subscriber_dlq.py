@@ -8,5 +8,5 @@ def callback(ch, method, properties, body):
         print(f"Erro no processamento: {e}")
         ch.basic_nack(delivery_tag=method.delivery_tag, requeue=False)
 
-subscriber_dlq = Subscriber("minha-fila-dlq", callback)
+subscriber_dlq = Subscriber("minha-dlq", callback)
 subscriber_dlq.start()

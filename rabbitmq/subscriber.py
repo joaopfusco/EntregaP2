@@ -17,7 +17,7 @@ class Subscriber:
 
         if self.__dlq_enabled:
             dlx_exchange = "dlx_exchange"
-            dlq_name = "minha-fila-dlq"
+            dlq_name = "minha-dlq"
 
             channel.exchange_declare(exchange=dlx_exchange, exchange_type='fanout')
             
